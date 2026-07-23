@@ -470,5 +470,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.1});
 document.querySelectorAll('.up').forEach(el=>io.observe(el));
 </script>
+
+<!-- Repassa UTMs/parâmetros de rastreamento da URL para o checkout (Kiwify) -->
+<script>
+(function(){
+  var qs = window.location.search;
+  if(!qs) return;
+  var extra = qs.substring(1);
+  document.querySelectorAll('a[href*="pay.kiwify.com.br"]').forEach(function(a){
+    a.href += (a.href.indexOf('?') > -1 ? '&' : '?') + extra;
+  });
+})();
+</script>
 </body>
 </html>
